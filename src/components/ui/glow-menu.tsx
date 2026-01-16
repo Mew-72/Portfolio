@@ -165,7 +165,7 @@ export function MenuBar() {
                                     <span className={`transition-colors duration-300 group-hover:${item.iconColor} text-foreground`}>
                                         {item.icon}
                                     </span>
-                                    <span>{item.label}</span>
+                                    <span className="hidden md:block">{item.label}</span>
                                 </motion.div>
 
                                 <motion.div
@@ -177,7 +177,7 @@ export function MenuBar() {
                                     <span className={`transition-colors duration-300 group-hover:${item.iconColor} text-foreground`}>
                                         {item.icon}
                                     </span>
-                                    <span>{item.label}</span>
+                                    <span className="hidden md:block">{item.label}</span>
                                 </motion.div>
                             </a>
                         </motion.div>

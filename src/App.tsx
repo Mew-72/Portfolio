@@ -5,6 +5,7 @@ import { Projects } from './components/Projects' // "Selected Works"
 import { Skills } from './components/Skills' // "Developer / Designer"
 import { Footer } from './components/Footer' // "Let's Make It Happen"
 import { ThemeProvider } from 'next-themes'
+import { ScrollPath } from './components/ui/scroll-path'
 
 function App() {
   return (
@@ -14,10 +15,17 @@ function App() {
 
         <main className="flex flex-col w-full">
           <Hero />
-          <About />
-          <Projects />
-          <Skills />
-          <Footer />
+
+          {/* Scroll-linked path container */}
+          <div className="relative w-full">
+            <ScrollPath />
+            <div className="relative z-10">
+              <About />
+              <Projects />
+              <Skills />
+              <Footer />
+            </div>
+          </div>
         </main>
 
       </div>

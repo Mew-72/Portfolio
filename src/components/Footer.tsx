@@ -17,9 +17,19 @@ export function Footer() {
                 <div className="w-full border-t border-border/40 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-muted-foreground text-sm uppercase tracking-widest font-['Space_Grotesk']">
                     <p>&copy; {new Date().getFullYear()} Portfolio. All rights reserved.</p>
                     <div className="flex gap-8">
-                        <a href="https://www.linkedin.com/in/mayank-kumar77/" className="hover:text-foreground transition-colors">LinkedIn</a>
-                        <a href="http://github.com/Mew-72/" className="hover:text-foreground transition-colors">GitHub</a>
-                        <a href="https://www.instagram.com/m4yhem_mk/" className="hover:text-foreground transition-colors">Instagram</a>
+                        {/* Social Links with Hover Underline */}
+                        <a href="https://www.linkedin.com/in/mayank-kumar77/" className="group relative hover:text-foreground transition-colors">
+                            <span>LinkedIn</span>
+                            <span className="absolute -bottom-1 left-0 w-full h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                        </a>
+                        <a href="http://github.com/Mew-72/" className="group relative hover:text-foreground transition-colors">
+                            <span>GitHub</span>
+                            <span className="absolute -bottom-1 left-0 w-full h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                        </a>
+                        <a href="https://www.instagram.com/m4yhem_mk/" className="group relative hover:text-foreground transition-colors">
+                            <span>Instagram</span>
+                            <span className="absolute -bottom-1 left-0 w-full h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                        </a>
                     </div>
                 </div>
             </div>
