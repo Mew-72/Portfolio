@@ -4,7 +4,6 @@ import React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Home, Settings, Bell, User, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
-import { Switch } from "@/components/ui/switch"
 
 
 

@@ -47,23 +47,39 @@ export function Projects() {
             <SectionHeader title="Selected Works" />
 
             <div className="max-w-7xl mx-auto w-full px-4 md:px-8 pt-20">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {works.map((work, idx) => (
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={{
+                        hidden: {},
+                        visible: {
+                            transition: {
+                                staggerChildren: 0.1
+                            }
+                        }
+                    }}
+                    className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                >
+                    {works.map((work) => (
                         <motion.div
                             key={work.title}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: idx * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                            viewport={{ once: true }}
-                            className={`group relative rounded-3xl overflow-hidden bg-secondary/5 border border-border/10 hover:border-border/20 transition-all duration-500 hover:shadow-xl ${work.className}`}
+                            variants={{
+                                hidden: { opacity: 0, y: 30 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+                            }}
+                            whileHover={{ y: -5 }}
+                            className={`group relative rounded-3xl overflow-hidden bg-secondary/5 border border-border/10 hover:border-border/20 transition-colors duration-500 hover:shadow-2xl hover:shadow-primary/5 ${work.className}`}
                         >
                             {/* Image Background with Overlay */}
                             <div className="relative aspect-[16/9] md:aspect-auto md:h-[300px] overflow-hidden">
                                 <div className={`absolute inset-0 bg-gradient-to-br ${work.gradient} opacity-20 mix-blend-overlay`} />
-                                <img
+                                <motion.img
                                     src={work.image}
                                     alt={work.title}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale-[0.2] group-hover:grayscale-0"
+                                    className="w-full h-full object-cover filter grayscale-[0.2] group-hover:grayscale-0"
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{ duration: 0.7, ease: "easeOut" }}
                                 />
                                 <div className="absolute inset-0 bg-background/20 group-hover:bg-transparent transition-colors duration-500" />
                             </div>
@@ -92,7 +108,7 @@ export function Projects() {
                             </div>
                         </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

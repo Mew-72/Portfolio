@@ -38,14 +38,27 @@ export function Skills() {
             <SectionHeader title="Capabilities" />
 
             <div className="max-w-7xl mx-auto w-full px-4 md:px-8 pt-20">
-                <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[minmax(250px,auto)] gap-6">
-                    {capabilities.map((capability, idx) => (
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={{
+                        hidden: {},
+                        visible: {
+                            transition: {
+                                staggerChildren: 0.1
+                            }
+                        }
+                    }}
+                    className="grid grid-cols-1 md:grid-cols-3 auto-rows-[minmax(250px,auto)] gap-6"
+                >
+                    {capabilities.map((capability) => (
                         <motion.div
                             key={capability.title}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: idx * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                            viewport={{ once: true, margin: "-100px" }}
+                            variants={{
+                                hidden: { opacity: 0, y: 30 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+                            }}
                             className={`relative group p-8 rounded-3xl border border-white/5 bg-white/5 backdrop-blur-sm overflow-hidden hover:border-white/10 transition-colors duration-500 ${capability.className}`}
                         >
                             {/* Subtle Gradient Background */}
@@ -58,19 +71,23 @@ export function Skills() {
                                 </div>
 
                                 <div className="flex flex-wrap gap-3">
-                                    {capability.skills.map((skill) => (
-                                        <span
+                                    {capability.skills.map((skill, skillIdx) => (
+                                        <motion.span
                                             key={skill}
-                                            className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm text-foreground/80 hover:bg-white/10 hover:border-white/20 hover:text-foreground transition-all duration-300 cursor-default"
+                                            initial={{ opacity: 0, scale: 0.8 }}
+                                            whileInView={{ opacity: 1, scale: 1 }}
+                                            transition={{ delay: 0.2 + (skillIdx * 0.05), duration: 0.3 }}
+                                            whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.1)" }}
+                                            className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm text-foreground/80 transition-colors duration-200 cursor-default"
                                         >
                                             {skill}
-                                        </span>
+                                        </motion.span>
                                     ))}
                                 </div>
                             </div>
                         </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

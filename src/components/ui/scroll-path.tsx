@@ -129,6 +129,19 @@ export function ScrollPath() {
                     }}
                 />
             ))}
+
+            {/* Accent bubbles at key points */}
+            {accents.map((accent, idx) => (
+                <AccentBubble
+                    key={`bubble-${idx}`}
+                    progress={smoothProgress}
+                    targetProgress={accent.progress}
+                    style={{
+                        top: `${accent.y}%`,
+                        left: `${accent.x}%`,
+                    }}
+                />
+            ))}
         </div>
     );
 }
@@ -159,6 +172,41 @@ function AccentDot({
     return (
         <motion.div
             className="absolute w-1.5 h-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-foreground/25 dark:bg-white/40"
+            style={{
+                ...style,
+                opacity,
+                scale,
+            }}
+        />
+    );
+}
+
+// Large accent bubble that appears at a specific scroll progress
+function AccentBubble({
+    progress,
+    targetProgress,
+    style
+}: {
+    progress: ReturnType<typeof useSpring>;
+    targetProgress: number;
+    style: React.CSSProperties;
+}) {
+    // Bubble swells in and slowly fades
+    const opacity = useTransform(
+        progress,
+        [targetProgress - 0.15, targetProgress, targetProgress + 0.25],
+        [0, 0.5, 0]
+    );
+
+    const scale = useTransform(
+        progress,
+        [targetProgress - 0.15, targetProgress, targetProgress + 0.25],
+        [0.5, 1.2, 0.8]
+    );
+
+    return (
+        <motion.div
+            className="absolute w-24 h-24 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-primary/30 to-purple-500/30 blur-2xl dark:from-primary/20 dark:to-blue-500/20"
             style={{
                 ...style,
                 opacity,

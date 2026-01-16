@@ -18,8 +18,8 @@ export function Hero() {
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
                 >
                     <motion.h1
-                        animate={{ y: [0, -20, 0] }}
-                        transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}
+                        animate={{ y: [0, -20, 0], letterSpacing: ["-0.05em", "-0.02em", "-0.05em"] }} // Breathing type
+                        transition={{ duration: 8, ease: "easeInOut", repeat: Infinity }}
                         className="text-[12vw] leading-[0.85] font-bold uppercase tracking-tighter text-foreground font-['Syne'] mix-blend-exclusion dark:mix-blend-normal"
                     >
                         PORT- <br /> FOLIO
@@ -69,11 +69,14 @@ export function Hero() {
                     </div>
                 </motion.div>
 
-                {/* Scroll Indicator */}
+                {/* Scroll Indicator - Enhanced */}
                 <motion.div
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.5, duration: 1 }}
+                    animate={{ opacity: 1, y: [0, 10, 0] }} // Breathing vertical drift
+                    transition={{
+                        opacity: { delay: 1.5, duration: 1 },
+                        y: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                    }}
                     className="absolute bottom-12 right-4 md:right-8 flex flex-col items-center gap-2"
                 >
                     <span className="mb-2 text-xs uppercase tracking-widest text-white/50 writing-vertical-rl">Scroll</span>
