@@ -117,19 +117,6 @@ export function ScrollPath() {
                 />
             </svg>
 
-            {/* Accent dots at key points */}
-            {accents.map((accent, idx) => (
-                <AccentDot
-                    key={idx}
-                    progress={smoothProgress}
-                    targetProgress={accent.progress}
-                    style={{
-                        top: `${accent.y}%`,
-                        left: `${accent.x}%`,
-                    }}
-                />
-            ))}
-
             {/* Accent bubbles at key points */}
             {accents.map((accent, idx) => (
                 <AccentBubble
@@ -146,40 +133,6 @@ export function ScrollPath() {
     );
 }
 
-// Small accent dot that appears at a specific scroll progress
-function AccentDot({
-    progress,
-    targetProgress,
-    style
-}: {
-    progress: ReturnType<typeof useSpring>;
-    targetProgress: number;
-    style: React.CSSProperties;
-}) {
-    // Dot becomes visible shortly before its target progress and fades after
-    const opacity = useTransform(
-        progress,
-        [targetProgress - 0.05, targetProgress, targetProgress + 0.15],
-        [0, 1, 0.2]
-    );
-
-    const scale = useTransform(
-        progress,
-        [targetProgress - 0.05, targetProgress, targetProgress + 0.1],
-        [0.3, 1.3, 0.8]
-    );
-
-    return (
-        <motion.div
-            className="absolute w-1.5 h-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-foreground/25 dark:bg-white/40"
-            style={{
-                ...style,
-                opacity,
-                scale,
-            }}
-        />
-    );
-}
 
 // Large accent bubble that appears at a specific scroll progress
 function AccentBubble({

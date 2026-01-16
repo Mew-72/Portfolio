@@ -22,7 +22,7 @@ export function Footer() {
                 </motion.a>
 
                 <div className="w-full border-t border-border/40 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-muted-foreground text-sm uppercase tracking-widest font-['Space_Grotesk']">
-                    <p>&copy; {new Date().getFullYear()} Portfolio. All rights reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} Mayank. All rights reserved.</p>
                     <div className="flex gap-8">
                         {/* Social Links with Hover Underline */}
                         <motion.a whileHover={{ y: -3 }} href="https://www.linkedin.com/in/mayank-kumar77/" className="group relative hover:text-foreground transition-colors">

@@ -18,7 +18,7 @@ export function Hero() {
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
                 >
                     <motion.h1
-                        animate={{ y: [0, -20, 0], letterSpacing: ["-0.05em", "-0.02em", "-0.05em"] }} // Breathing type
+                        animate={{ y: [0, -20, 0], letterSpacing: ["-0.05em", "-0.02em", "-0.05em"] }}
                         transition={{ duration: 8, ease: "easeInOut", repeat: Infinity }}
                         className="text-[12vw] leading-[0.85] font-bold uppercase tracking-tighter text-foreground font-['Syne'] mix-blend-exclusion dark:mix-blend-normal"
                     >
@@ -69,10 +69,10 @@ export function Hero() {
                     </div>
                 </motion.div>
 
-                {/* Scroll Indicator - Enhanced */}
+                {/* Scroll Indicator */}
                 <motion.div
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 1, y: [0, 10, 0] }} // Breathing vertical drift
+                    animate={{ opacity: 1, y: [0, 10, 0] }}
                     transition={{
                         opacity: { delay: 1.5, duration: 1 },
                         y: { duration: 2, repeat: Infinity, ease: "easeInOut" }
@@ -93,3 +93,5 @@ export function Hero() {
         </div>
     );
 }
+
+

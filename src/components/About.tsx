@@ -1,10 +1,11 @@
 import { HoverPreview } from "@/components/ui/hover-preview";
 import { SectionHeader } from "@/components/ui/section-header";
 import { motion } from "framer-motion";
+import { staggerContainer, fadeUpVariant } from "@/config/transitions";
 
 export function About() {
     return (
-        <section id="about" className="min-h-screen w-full relative z-10 pt-20">
+        <section id="about" className="min-h-[60vh] w-full relative z-10 pt-20">
             <SectionHeader title="What I Do" />
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full max-w-7xl mx-auto px-4 py-20">
@@ -13,14 +14,7 @@ export function About() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
-                    variants={{
-                        hidden: {},
-                        visible: {
-                            transition: {
-                                staggerChildren: 0.15
-                            }
-                        }
-                    }}
+                    variants={staggerContainer}
                     className="space-y-12"
                 >
 
@@ -40,10 +34,7 @@ export function About() {
                     ].map((item, idx) => (
                         <motion.div
                             key={idx}
-                            variants={{
-                                hidden: { opacity: 0, y: 20 },
-                                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
-                            }}
+                            variants={fadeUpVariant}
                             className="group"
                         >
                             <motion.h3
