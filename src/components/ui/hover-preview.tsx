@@ -202,6 +202,7 @@ const PreviewCard = ({
         >
             <div className="preview-card-inner">
                 <img
+                    key={data.image}
                     src={data.image}
                     alt={data.title || ""}
                     crossOrigin="anonymous"
