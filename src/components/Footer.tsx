@@ -7,7 +7,7 @@ export function Footer() {
 
             <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col items-center text-center">
 
-                <a href="mailto:hello@example.com" className="group relative inline-block my-20">
+                <a href="mailto:mayank.thakan7@gmail.com" className="group relative inline-block my-20">
                     <span className="text-[8vw] leading-none font-bold text-foreground group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-600 transition-all duration-300 font-['Syne']">
                         SAY HELLO
                     </span>
@@ -17,9 +17,9 @@ export function Footer() {
                 <div className="w-full border-t border-border/40 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-muted-foreground text-sm uppercase tracking-widest font-['Space_Grotesk']">
                     <p>&copy; {new Date().getFullYear()} Portfolio. All rights reserved.</p>
                     <div className="flex gap-8">
-                        <a href="#" className="hover:text-foreground transition-colors">LinkedIn</a>
-                        <a href="#" className="hover:text-foreground transition-colors">GitHub</a>
-                        <a href="#" className="hover:text-foreground transition-colors">Instagram</a>
+                        <a href="https://www.linkedin.com/in/mayank-kumar77/" className="hover:text-foreground transition-colors">LinkedIn</a>
+                        <a href="http://github.com/Mew-72/" className="hover:text-foreground transition-colors">GitHub</a>
+                        <a href="https://www.instagram.com/m4yhem_mk/" className="hover:text-foreground transition-colors">Instagram</a>
                     </div>
                 </div>
             </div>
