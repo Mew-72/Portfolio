@@ -1,37 +1,12 @@
 "use client"
 
 import React from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { Home, Settings, Bell, User, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Switch } from "@/components/ui/switch"
 
-export function ThemeToggle() {
-    const { theme, setTheme } = useTheme()
 
-    const toggleTheme = () => {
-        setTheme(theme === "light" ? "dark" : "light")
-    }
-
-    return (
-        <div className="flex items-center space-x-2 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
-            <Sun
-                className={`h-[1.2rem] w-[1.2rem] transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${theme === "dark" ? "text-[#A1A1AA] scale-75 rotate-12" : "text-foreground scale-100 rotate-0"
-                    }`}
-            />
-            <Switch
-                checked={theme === "dark"}
-                onCheckedChange={toggleTheme}
-                aria-label="Toggle theme"
-                className="transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-110"
-            />
-            <Moon
-                className={`h-[1.2rem] w-[1.2rem] transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${theme === "light" ? "text-[#A1A1AA] scale-75 rotate-12" : "text-foreground scale-100 rotate-0"
-                    }`}
-            />
-        </div>
-    )
-}
 
 interface MenuItem {
     icon: React.ReactNode
@@ -115,9 +90,19 @@ const sharedTransition: Transition = {
 }
 
 export function MenuBar() {
-    const { theme } = useTheme()
-
+    const { theme, setTheme } = useTheme()
     const isDarkTheme = theme === "dark"
+
+    const toggleTheme = () => {
+        setTheme(theme === "light" ? "dark" : "light")
+    }
+
+    const themeItem = {
+        label: isDarkTheme ? "Light" : "Dark",
+        icon: isDarkTheme ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />,
+        gradient: "radial-gradient(circle, rgba(253,224,71,0.15) 0%, rgba(250,204,21,0.06) 50%, rgba(234,179,8,0) 100%)",
+        iconColor: "text-yellow-500",
+    }
 
     return (
         <motion.nav
@@ -137,53 +122,124 @@ export function MenuBar() {
             />
             <ul className="flex items-center gap-2 relative z-10">
                 {menuItems.map((item) => (
-                    <motion.li key={item.label} className="relative">
-                        <motion.div
-                            className="block rounded-xl overflow-visible group relative"
-                            style={{ perspective: "600px" }}
-                            whileHover="hover"
-                            initial="initial"
-                        >
-                            <motion.div
-                                className="absolute inset-0 z-0 pointer-events-none"
-                                variants={glowVariants}
-                                style={{
-                                    background: item.gradient,
-                                    opacity: 0,
-                                    borderRadius: "16px",
-                                }}
-                            />
-                            <a
-                                href={item.href}
-                                className="flex items-center gap-2 px-4 py-2 relative z-10 bg-transparent text-muted-foreground group-hover:text-foreground transition-colors rounded-xl"
-                            >
-                                <motion.div
-                                    variants={itemVariants}
-                                    transition={sharedTransition}
-                                    style={{ transformStyle: "preserve-3d", transformOrigin: "center bottom", display: 'flex', alignItems: 'center', gap: '0.5rem' }}
-                                >
-                                    <span className={`transition-colors duration-300 group-hover:${item.iconColor} text-foreground`}>
-                                        {item.icon}
-                                    </span>
-                                    <span className="hidden md:block">{item.label}</span>
-                                </motion.div>
-
-                                <motion.div
-                                    className="flex items-center gap-2 px-4 py-2 absolute inset-0 z-10 bg-transparent text-muted-foreground group-hover:text-foreground transition-colors rounded-xl"
-                                    variants={backVariants}
-                                    transition={sharedTransition}
-                                    style={{ transformStyle: "preserve-3d", transformOrigin: "center top", rotateX: 90 }}
-                                >
-                                    <span className={`transition-colors duration-300 group-hover:${item.iconColor} text-foreground`}>
-                                        {item.icon}
-                                    </span>
-                                    <span className="hidden md:block">{item.label}</span>
-                                </motion.div>
-                            </a>
-                        </motion.div>
-                    </motion.li>
+                    <MenuItemComponent key={item.label} item={item} />
                 ))}
+
+                {/* Theme Toggle Item */}
+                <motion.li className="relative">
+                    <motion.div
+                        className="block rounded-xl overflow-visible group relative cursor-pointer"
+                        style={{ perspective: "600px" }}
+                        whileHover="hover"
+                        initial="initial"
+                        onClick={toggleTheme}
+                    >
+                        <motion.div
+                            className="absolute inset-0 z-0 pointer-events-none"
+                            variants={glowVariants}
+                            style={{
+                                background: themeItem.gradient,
+                                opacity: 0,
+                                borderRadius: "16px",
+                            }}
+                        />
+                        <div className="flex items-center gap-2 px-4 py-2 relative z-10 bg-transparent text-muted-foreground group-hover:text-foreground transition-colors rounded-xl">
+                            <motion.div
+                                variants={itemVariants}
+                                transition={sharedTransition}
+                                style={{ transformStyle: "preserve-3d", transformOrigin: "center bottom", display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+                            >
+                                <span className={`transition-colors duration-300 group-hover:${themeItem.iconColor} text-foreground`}>
+                                    <AnimatePresence mode="wait" initial={false}>
+                                        <motion.div
+                                            key={isDarkTheme ? "dark" : "light"}
+                                            initial={{ rotate: -90, scale: 0 }}
+                                            animate={{ rotate: 0, scale: 1 }}
+                                            exit={{ rotate: 90, scale: 0 }}
+                                            transition={{ duration: 0.2 }}
+                                        >
+                                            {themeItem.icon}
+                                        </motion.div>
+                                    </AnimatePresence>
+                                </span>
+                                <span className="hidden md:block">{themeItem.label}</span>
+                            </motion.div>
+
+                            <motion.div
+                                className="flex items-center gap-2 px-4 py-2 absolute inset-0 z-10 bg-transparent text-muted-foreground group-hover:text-foreground transition-colors rounded-xl"
+                                variants={backVariants}
+                                transition={sharedTransition}
+                                style={{ transformStyle: "preserve-3d", transformOrigin: "center top", rotateX: 90 }}
+                            >
+                                <span className={`transition-colors duration-300 group-hover:${themeItem.iconColor} text-foreground`}>
+                                    <AnimatePresence mode="wait" initial={false}>
+                                        <motion.div
+                                            key={isDarkTheme ? "dark" : "light"}
+                                            initial={{ rotate: -90, scale: 0 }}
+                                            animate={{ rotate: 0, scale: 1 }}
+                                            exit={{ rotate: 90, scale: 0 }}
+                                            transition={{ duration: 0.2 }}
+                                        >
+                                            {themeItem.icon}
+                                        </motion.div>
+                                    </AnimatePresence>
+                                </span>
+                                <span className="hidden md:block">{themeItem.label}</span>
+                            </motion.div>
+                        </div>
+                    </motion.div>
+                </motion.li>
             </ul>
         </motion.nav>
+    )
+}
+
+function MenuItemComponent({ item }: { item: MenuItem }) {
+    return (
+        <motion.li className="relative">
+            <motion.div
+                className="block rounded-xl overflow-visible group relative"
+                style={{ perspective: "600px" }}
+                whileHover="hover"
+                initial="initial"
+            >
+                <motion.div
+                    className="absolute inset-0 z-0 pointer-events-none"
+                    variants={glowVariants}
+                    style={{
+                        background: item.gradient,
+                        opacity: 0,
+                        borderRadius: "16px",
+                    }}
+                />
+                <a
+                    href={item.href}
+                    className="flex items-center gap-2 px-4 py-2 relative z-10 bg-transparent text-muted-foreground group-hover:text-foreground transition-colors rounded-xl"
+                >
+                    <motion.div
+                        variants={itemVariants}
+                        transition={sharedTransition}
+                        style={{ transformStyle: "preserve-3d", transformOrigin: "center bottom", display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+                    >
+                        <span className={`transition-colors duration-300 group-hover:${item.iconColor} text-foreground`}>
+                            {item.icon}
+                        </span>
+                        <span className="hidden md:block">{item.label}</span>
+                    </motion.div>
+
+                    <motion.div
+                        className="flex items-center gap-2 px-4 py-2 absolute inset-0 z-10 bg-transparent text-muted-foreground group-hover:text-foreground transition-colors rounded-xl"
+                        variants={backVariants}
+                        transition={sharedTransition}
+                        style={{ transformStyle: "preserve-3d", transformOrigin: "center top", rotateX: 90 }}
+                    >
+                        <span className={`transition-colors duration-300 group-hover:${item.iconColor} text-foreground`}>
+                            {item.icon}
+                        </span>
+                        <span className="hidden md:block">{item.label}</span>
+                    </motion.div>
+                </a>
+            </motion.div>
+        </motion.li>
     )
 }

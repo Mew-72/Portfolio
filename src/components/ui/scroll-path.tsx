@@ -18,10 +18,10 @@ export function ScrollPath() {
         offset: ["start center", "end end"]
     });
 
-    // Tighter spring physics for 1:1 feel (less lag)
+    // Softer spring physics to match smooth scrolling
     const smoothProgress = useSpring(scrollYProgress, {
-        stiffness: 400,
-        damping: 40,
+        stiffness: 100,
+        damping: 20,
         restDelta: 0.001
     });
 
@@ -53,7 +53,7 @@ export function ScrollPath() {
     return (
         <div
             ref={containerRef}
-            className="absolute inset-0 pointer-events-none z-0 overflow-hidden"
+            className="absolute inset-0 pointer-events-none z-0 overflow-hidden hidden md:block"
             aria-hidden="true"
         >
             <svg
@@ -64,22 +64,6 @@ export function ScrollPath() {
             >
                 {/* Main flowing path with swirls and loops */}
                 <motion.path
-                    // d="
-                    //     M 10 0
-                    //     Q 5 5, 15 8
-                    //     Q 30 10, 25 15
-                    //     C 15 18, 5 20, 20 25
-                    //     Q 40 28, 60 22
-                    //     C 80 18, 90 25, 75 32
-                    //     Q 55 40, 70 45
-                    //     C 90 50, 85 55, 65 58
-                    //     Q 40 62, 25 55
-                    //     C 10 50, 5 58, 20 65
-                    //     Q 45 72, 30 78
-                    //     C 15 82, 25 88, 50 85
-                    //     Q 75 82, 60 90
-                    //     C 45 95, 55 98, 50 100
-                    // "
                     d="
                         M 10 0
                         Q 5 5, 15 8

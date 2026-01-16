@@ -34,7 +34,7 @@ export function About() {
                 </div>
 
                 {/* Interactive Feature */}
-                <div className="relative h-full min-h-[500px] flex items-center justify-center border-l border-white/10 pl-12 invisible lg:visible">
+                <div className="relative h-full min-h-[400px] lg:min-h-[500px] flex items-center justify-center border-t border-white/10 pt-12 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-12 visible">
                     <div className="absolute inset-0">
                         <HoverPreview />
                     </div>
