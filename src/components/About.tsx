@@ -3,7 +3,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 
 export function About() {
     return (
-        <section id="about" className="min-h-screen w-full relative z-10 bg-background pt-20">
+        <section id="about" className="min-h-screen w-full relative z-10 pt-20">
             <SectionHeader title="What I Do" />
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full max-w-7xl mx-auto px-4 py-20">

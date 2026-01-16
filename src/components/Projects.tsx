@@ -43,7 +43,7 @@ const works = [
 
 export function Projects() {
     return (
-        <section id="projects" className="min-h-screen w-full relative z-10 bg-background pb-20 font-['Space_Grotesk']">
+        <section id="projects" className="min-h-screen w-full relative z-10 pb-20 font-['Space_Grotesk']">
             <SectionHeader title="Selected Works" />
 
             <div className="max-w-7xl mx-auto w-full px-4 md:px-8 pt-20">

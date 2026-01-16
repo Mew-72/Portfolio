@@ -6,22 +6,39 @@ import React, { useState, useCallback, useRef } from "react"
 import Img1 from '@/assets/1.jpeg';
 import Img2 from '@/assets/2.jpeg';
 import Img3 from '@/assets/3.jpeg';
+import Img4 from '@/assets/4.jpeg';
 
-const previewData = {
+interface PreviewItem {
+    image: string
+    title: string
+    subtitle: string
+    objectPosition?: string
+}
+
+const previewData: Record<string, PreviewItem> = {
     journey: {
         image: Img1,
         title: "Web Development",
         subtitle: "Building the future of the web",
+        objectPosition: "top", // Middle of top (0%) and center (50%)
     },
     tech: {
         image: Img2,
         title: "Modern Tech Stack",
         subtitle: "React, Next.js, and beyond",
+        objectPosition: "center",
     },
     creative: {
         image: Img3,
         title: "Creative Coding",
         subtitle: "Merging art with algorithms",
+        objectPosition: "center",
+    },
+    motion: {
+        image: Img4,
+        title: "Motion Graphics",
+        subtitle: "Dynamic visual storytelling",
+        objectPosition: "0% 10%",
     },
 }
 
@@ -184,7 +201,7 @@ const PreviewCard = ({
     isVisible,
     cardRef,
 }: {
-    data: (typeof previewData)[keyof typeof previewData] | null
+    data: PreviewItem | null
     position: { x: number; y: number }
     isVisible: boolean
     cardRef: React.RefObject<HTMLDivElement | null>
@@ -207,6 +224,7 @@ const PreviewCard = ({
                     alt={data.title || ""}
                     crossOrigin="anonymous"
                     referrerPolicy="no-referrer"
+                    style={{ objectPosition: data.objectPosition || 'center' }}
                 />
                 <div className="preview-card-title">{data.title}</div>
                 <div className="preview-card-subtitle">{data.subtitle}</div>
@@ -328,7 +346,7 @@ export function HoverPreview() {
                         <p>
                             Beyond code, I'm constantly experimenting with AI and{" "}
                             <HoverLink
-                                previewKey="creative"
+                                previewKey="motion"
                                 onHoverStart={handleHoverStart}
                                 onHoverMove={handleHoverMove}
                                 onHoverEnd={handleHoverEnd}

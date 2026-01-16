@@ -34,7 +34,7 @@ const capabilities = [
 
 export function Skills() {
     return (
-        <section id="skills" className="min-h-screen w-full relative z-10 bg-background py-20 font-['Space_Grotesk'] overflow-hidden">
+        <section id="skills" className="min-h-screen w-full relative z-10 py-20 font-['Space_Grotesk'] overflow-hidden">
             <SectionHeader title="Capabilities" />
 
             <div className="max-w-7xl mx-auto w-full px-4 md:px-8 pt-20">
