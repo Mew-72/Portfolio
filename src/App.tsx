@@ -6,10 +6,12 @@ import { Skills } from './components/Skills' // "Developer / Designer"
 import { Footer } from './components/Footer' // "Let's Make It Happen"
 import { ThemeProvider } from 'next-themes'
 import { ScrollPath } from './components/ui/scroll-path'
+import { CustomCursor } from './components/ui/custom-cursor'
 
 function App() {
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+      <CustomCursor />
       <div className="relative w-full min-h-screen text-foreground bg-background transition-colors duration-300 overflow-x-hidden font-sans selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
         <Navbar />
 
