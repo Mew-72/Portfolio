@@ -10,7 +10,7 @@ import { ScrollPath } from './components/ui/scroll-path'
 function App() {
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-      <div className="relative w-full min-h-screen text-foreground bg-background transition-colors duration-300 overflow-x-hidden font-sans selection:bg-white/20">
+      <div className="relative w-full min-h-screen text-foreground bg-background transition-colors duration-300 overflow-x-hidden font-sans selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
         <Navbar />
 
         <main className="flex flex-col w-full">
