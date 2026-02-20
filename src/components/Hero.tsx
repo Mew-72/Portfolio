@@ -5,12 +5,12 @@ import { BackgroundPaths } from "@/components/ui/background-paths";
 
 export function Hero() {
     return (
-        <div className="relative min-h-[100dvh] w-full flex flex-col items-center justify-center overflow-hidden bg-background" id="home">
+        <div className="relative min-h-[100dvh] w-full flex flex-col items-center justify-center md:justify-center overflow-hidden bg-background" id="home">
             <div className="absolute inset-0 z-0">
                 <BackgroundPaths title="" />
             </div>
 
-            <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 mt-20 flex flex-col justify-center h-full pointer-events-none">
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 mt-auto md:mt-20 mb-16 md:mb-0 flex flex-col justify-end md:justify-center h-full pointer-events-none">
 
                 <motion.div
                     initial={{ opacity: 0, y: 100 }}
@@ -20,7 +20,7 @@ export function Hero() {
                     <motion.h1
                         animate={{ y: [0, -20, 0], letterSpacing: ["-0.05em", "-0.02em", "-0.05em"] }}
                         transition={{ duration: 8, ease: "easeInOut", repeat: Infinity }}
-                        className="text-[12vw] leading-[0.85] font-bold uppercase tracking-tighter text-foreground font-['Syne'] mix-blend-exclusion dark:mix-blend-normal"
+                        className="text-[18vw] md:text-[12vw] leading-[0.85] font-bold uppercase tracking-tighter text-foreground font-['Syne'] mix-blend-exclusion dark:mix-blend-normal"
                     >
                         PORT- <br /> FOLIO
                     </motion.h1>

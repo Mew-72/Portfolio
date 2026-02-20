@@ -263,6 +263,12 @@
     overflow: hidden;
 }
 
+@media (max-width: 640px) {
+    .ambient-background-shapes {
+        display: none;
+    }
+}
+
 .bg-shape {
     position: absolute;
     width: 80%;
