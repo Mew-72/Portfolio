@@ -5,7 +5,7 @@ import { BackgroundPaths } from "@/components/ui/background-paths";
 
 export function Hero() {
     return (
-        <div className="relative min-h-[100dvh] w-full flex flex-col items-center justify-center overflow-hidden bg-background">
+        <div className="relative min-h-[100dvh] w-full flex flex-col items-center justify-center overflow-hidden bg-background" id="home">
             <div className="absolute inset-0 z-0">
                 <BackgroundPaths title="" />
             </div>

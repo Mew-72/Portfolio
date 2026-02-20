@@ -151,8 +151,8 @@ export function CustomCursor() {
                     style={{
                         x: trail1X,
                         y: trail1Y,
-                        width: 55,
-                        height: 55,
+                        width: 50,
+                        height: 50,
                         backgroundColor: blobColor,
                         opacity: isVisible ? trail1Opacity : 0,
                         translateX: "-50%",

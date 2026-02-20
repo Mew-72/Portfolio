@@ -92,3 +92,337 @@
         transition: background-color 2s ease-in-out, color 2s ease-in-out, border-color 2s ease-in-out;
     }
 }
+
+/* ════════════════════════════════════════════════
+   Kinetic Navigation Styles
+   ════════════════════════════════════════════════ */
+
+/* ── Header Bar ── */
+.kinetic-header-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.kinetic-header {
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+}
+
+.kinetic-nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.kinetic-logo {
+    pointer-events: auto;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: hsl(var(--foreground));
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    transition: opacity 0.3s ease;
+}
+
+.kinetic-logo:hover {
+    opacity: 0.7;
+}
+
+.kinetic-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* ── Menu Button ── */
+.nav-close-btn {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 1.25rem;
+    border: 1px solid hsl(var(--border));
+    border-radius: 100px;
+    background: hsl(var(--background) / 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    cursor: pointer;
+    color: hsl(var(--foreground));
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-close-btn:hover {
+    background: hsl(var(--accent));
+    border-color: hsl(var(--foreground) / 0.2);
+}
+
+.menu-button-text {
+    overflow: hidden;
+    height: 1.1em;
+    position: relative;
+}
+
+.menu-button-text p {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.1em;
+    margin: 0;
+}
+
+.icon-wrap {
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-wrap svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* ── Fullscreen Overlay ── */
+.fullscreen-menu-container {
+    position: relative;
+    z-index: 99;
+}
+
+.nav-overlay-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    display: none;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: hsl(var(--background) / 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    cursor: pointer;
+}
+
+/* ── Menu Content Panel ── */
+.menu-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    max-width: 600px;
+    overflow: hidden;
+}
+
+@media (max-width: 640px) {
+    .menu-content {
+        max-width: 100%;
+    }
+}
+
+.menu-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+/* ── Backdrop Layers ── */
+.backdrop-layer {
+    position: absolute;
+    inset: 0;
+    background: hsl(var(--background));
+    transform: translateX(101%);
+}
+
+.backdrop-layer.first {
+    background: hsl(var(--accent));
+    opacity: 0.4;
+}
+
+.backdrop-layer.second {
+    background: hsl(var(--secondary));
+    opacity: 0.6;
+}
+
+/* ── Background Shapes ── */
+.ambient-background-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.bg-shape {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.bg-shape.active {
+    opacity: 1;
+}
+
+.shape-element {
+    transition: all 0.3s ease;
+}
+
+/* ── Menu Content Wrapper ── */
+.menu-content-wrapper {
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 3rem 2rem;
+}
+
+@media (max-width: 640px) {
+    .menu-content-wrapper {
+        padding: 5rem 1.5rem 1.5rem;
+    }
+}
+
+/* ── Menu List ── */
+.menu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.menu-list-item {
+    overflow: hidden;
+}
+
+/* ── Nav Links ── */
+.nav-link {
+    display: block;
+    position: relative;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: hsl(var(--foreground));
+    border-radius: 12px;
+    overflow: hidden;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: hsl(var(--foreground));
+}
+
+.nav-link-text {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.nav-link-hover-bg {
+    position: absolute;
+    inset: 0;
+    background: hsl(var(--accent));
+    border-radius: 12px;
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.65, 0.05, 0, 1);
+    z-index: 1;
+}
+
+.nav-link:hover .nav-link-hover-bg {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+/* ── Menu Footer ── */
+.kinetic-menu-footer {
+    margin-top: auto;
+    padding-top: 2rem;
+    border-top: 1px solid hsl(var(--border));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.kinetic-theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid hsl(var(--border));
+    border-radius: 100px;
+    background: transparent;
+    color: hsl(var(--muted-foreground));
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.kinetic-theme-toggle:hover {
+    color: hsl(var(--foreground));
+    border-color: hsl(var(--foreground) / 0.3);
+}
+
+.kinetic-socials {
+    display: flex;
+    gap: 1.25rem;
+}
+
+.kinetic-socials a {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: hsl(var(--muted-foreground));
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.kinetic-socials a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: hsl(var(--foreground));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.65, 0.05, 0, 1);
+}
+
+.kinetic-socials a:hover {
+    color: hsl(var(--foreground));
+}
+
+.kinetic-socials a:hover::after {
+    transform: scaleX(1);
+}
